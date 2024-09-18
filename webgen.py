@@ -25,6 +25,7 @@ class WebsiteConfig:
     papers: List[dict]
     template_dir: Path
     output_dir: Path
+    root_url: Optional[str] = None
 
 @dataclasses.dataclass
 class Paper:
@@ -39,6 +40,7 @@ class Paper:
     entry: str
 
     kind : Literal["book", "journal", "code", "conference", "preprint", "thesis", "other"] = "other"
+
 
     def __getitem__(self, key):
         return getattr(self, key)
@@ -98,6 +100,7 @@ class Website:
     templates: Environment
     output_dir: Path
     template_dir: Path
+    root_url: Optional[str] = None
 
 def config_to_website(config: WebsiteConfig) -> Website:
     papers = []
@@ -118,7 +121,7 @@ def config_to_website(config: WebsiteConfig) -> Website:
         for author in paper.authors:
             authors.setdefault(author, []).append(paper)
 
-    return Website(papers, sha256s, dois, arxivs, authors, env, config.output_dir, config.template_dir)
+    return Website(papers, sha256s, dois, arxivs, authors, env, config.output_dir, config.template_dir, config.root_url)
 
 def render_website(website: Website):
     # create the output directory if it does not exist already
@@ -137,26 +140,28 @@ def render_hugelist(website: Website):
     by_year = sorted(website.papers, key=lambda x: x.year, reverse=True)
     grouped = [ (year, list(papers)) for (year, papers) in itertools.groupby(by_year, key=lambda x: x.year) ]
     total = len(website.papers)
+    root_url = website.root_url or "."
     with open(website.output_dir / 'list.html', 'w') as f:
-        f.write(template.render(title="List", papers_by_year=grouped, root_url=".", total=total))
+        f.write(template.render(title="List", papers_by_year=grouped, root_url=root_url, total=total))
 
 def render_page(website: Website, name : str, dirname : str = None):
     template = website.templates.get_template(f'{name}.html')
     output   = website.output_dir / (dirname or "") / f'{name}.html'
-    root_url = "." if dirname is None else ".."
+    test_root_url = website.root_url or ("." if dirname is None else "..")
     with open(output, 'w') as f:
         f.write(template.render(title=name, root_url=root_url))
 
 def render_index(website: Website):
     template = website.templates.get_template('index.html')
     total = len(website.papers)
-
+    root_url = website.root_url or "."
     with open(website.output_dir / 'index.html', 'w') as f:
-        f.write(template.render(title="Search", total=total, root_url="."))
+        f.write(template.render(title="Search", total=total, root_url=root_url))
 
 def render_list(website: Website, name : str):
     template = website.templates.get_template(f'result.html')
     d = getattr(website, name + "s")
+    root_url = website.root_url or ".."
     for identifier, papers in d.items():
         # create the directory if it does not exist already
         outpath =  website.output_dir / name / f'{identifier}.html'
@@ -168,7 +173,7 @@ def render_list(website: Website, name : str):
                                     identifier=identifier,
                                     papers=papers,
                                     total=len(papers),
-                                    root_url=".."))
+                                    root_url=root_url))
 
 def read_bibtex(bibtex_file):
     with open(bibtex_file, 'r') as f:
@@ -189,6 +194,7 @@ def main():
     parser.add_argument('bibtex_files', type=str, nargs='+', help='List of bibtex files')
     parser.add_argument('--template', type=str, default='template', help='Template directory')
     parser.add_argument('--output', type=str, default='output', help='Output directory')
+    parser.add_argument('--root-url', type=str, default=None, help='Root URL for the website')
     args = parser.parse_args()
 
     # Check that the template directory exists
@@ -206,7 +212,8 @@ def main():
     config = WebsiteConfig(
         papers=papers,
         template_dir=Path(args.template),
-        output_dir=Path(args.output)
+        output_dir=Path(args.output),
+        root_url=args.root_url
     )
 
     # creates the website

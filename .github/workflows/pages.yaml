@@ -38,7 +38,7 @@ jobs:
           pip3 install -r requirements.txt
       - name: Build website
         run: |
-         python3 webgen.py --template=templates --output=site *.bib
+         python3 webgen.py --root-url="https://aliaumel.github.io/transducer-bib/" --template=templates --output=site *.bib
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
