@@ -125,6 +125,7 @@ def render_website(website: Website):
     website.output_dir.mkdir(parents=True, exist_ok=True)
     for name in ['sha256', 'doi', 'arxiv', 'author']:
         render_list(website, name)
+        render_page(website, "404", dirname=name)
     render_index(website)
     render_hugelist(website)
     render_page(website, "404")
@@ -139,10 +140,12 @@ def render_hugelist(website: Website):
     with open(website.output_dir / 'list.html', 'w') as f:
         f.write(template.render(title="List", papers_by_year=grouped, root_url=".", total=total))
 
-def render_page(website: Website, name : str):
+def render_page(website: Website, name : str, dirname : str = None):
     template = website.templates.get_template(f'{name}.html')
-    with open(website.output_dir / f'{name}.html', 'w') as f:
-        f.write(template.render(title=name, root_url="."))
+    output   = website.output_dir / (dirname or "") / f'{name}.html'
+    root_url = "." if dirname is None else ".."
+    with open(output, 'w') as f:
+        f.write(template.render(title=name, root_url=root_url))
 
 def render_index(website: Website):
     template = website.templates.get_template('index.html')
@@ -165,7 +168,7 @@ def render_list(website: Website, name : str):
                                     identifier=identifier,
                                     papers=papers,
                                     total=len(papers),
-                                    root_url="../.."))
+                                    root_url=".."))
 
 def read_bibtex(bibtex_file):
     with open(bibtex_file, 'r') as f:
