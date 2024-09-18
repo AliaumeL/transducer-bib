@@ -17,7 +17,7 @@ import yaml
 from pathlib import Path
 import dataclasses
 from jinja2 import Environment, FileSystemLoader
-from typing import List, Dict, Literal
+from typing import List, Dict, Literal, Optional
 import itertools
 
 @dataclasses.dataclass
@@ -147,7 +147,7 @@ def render_hugelist(website: Website):
 def render_page(website: Website, name : str, dirname : str = None):
     template = website.templates.get_template(f'{name}.html')
     output   = website.output_dir / (dirname or "") / f'{name}.html'
-    test_root_url = website.root_url or ("." if dirname is None else "..")
+    root_url = website.root_url or ("." if dirname is None else "..")
     with open(output, 'w') as f:
         f.write(template.render(title=name, root_url=root_url))
 
