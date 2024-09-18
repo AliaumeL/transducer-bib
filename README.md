@@ -1,3 +1,5 @@
+[![Github Pages](https://github.com/AliaumeL/transducer-bib/actions/workflows/pages.yaml/badge.svg)](https://github.com/AliaumeL/transducer-bib/actions/workflows/pages.yaml)
+
 # transducer-bib
 
 This repository contains a collection of bibtex entries for papers and books
