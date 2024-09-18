@@ -1,0 +1,34 @@
+{% extends "default.html" %}
+{% block content %}
+    <h1>List of papers</h1>
+    {% for (year, papers) in papers_by_year %}
+    <h2>{{ year }}</h2>
+    <ol class="papers">
+        {% for paper in papers %}
+        <li data-lang="{{ paper.lang }}" data-kind="{{ paper.kind }}">
+            <span class="title">{{ paper.title }}</span>
+            <span class="authors">
+            {% for author in paper.authors %}
+                <span class="author">{{ author }}</span>
+            {% endfor %}
+            </span>
+            <span class="links">
+            {% for doi in paper.doi %}
+            <a href="/doi/{{ doi }}.html">doi:{{ doi }}</a>
+            {% endfor %}
+            {% for arxiv in paper.arxiv %}
+            <a href="/arxiv/{{ arxiv }}.html">arxiv:{{ arxiv }}</a>
+            {% endfor %}
+            {% for sha256 in paper.sha256 %}
+            <a href="/sha256/{{ sha256 }}.html">sha256:{{ sha256[:10] }}</a>
+            {% endfor %}
+            </span>
+            <details>
+                <summary>BibTeX</summary>
+                <pre><button onclick="copyEntry({{ loop.index }})">Copy</button><code>{{ paper.entry }}</code></pre>
+            </details>
+        </li>
+        {% endfor %}
+    </ol>
+    {% endfor %}
+{% endblock %}

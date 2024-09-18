@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ title }}</title>
+        <meta charset="utf-8">
+        <meta lang="en">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ description }}">
+        <meta name="keywords" content="{{ keywords }}">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <script>
+        function copyEntry(i) {
+            const codes = document.querySelectorAll("main ol.papers pre code");
+            const butn  = document.querySelectorAll("main ol.papers pre button");
+            const text = codes[i - 1].textContent;
+            butn[i - 1].textContent = "Copied!";
+            setTimeout(() => { butn[i - 1].textContent = "Copy"; }, 1000);
+            navigator.clipboard.writeText(text);
+        }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>{{ title }}</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Search</a></li>
+                    <li><a href="/list.html">List</a></li>
+                    <li><a href="/about.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>Aliaume LOPEZ &copy; 2024</p>
+        </footer>
+    </body>
+</html>

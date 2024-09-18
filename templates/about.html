@@ -1,0 +1,20 @@
+{% extends "default.html" %}
+{% block content %}
+<h1>About</h1>
+<p>
+This is a simple web page displaying the papers
+in my BibTeX database. These are curated and in a consistent format.
+</p>
+<ol>
+    <li>When arXiv versions exist for a paper, they are linked to.</li>
+    <li>I actually care about the <em>version</em> of the paper, so we
+        store arXiv versions in separate entries.</li>
+    <li>When a paper has a DOI, it is linked to.</li>
+    <li>For every paper that I can cite, I want to be able to
+        easily find the PDF file on my computer. To that end,
+        I store the SHA-256 checksum of the PDF file in the BibTeX.
+        When several versions are available, I store all of the checksums
+        in order of preference.</li>
+    <li>
+</ol>
+{% endblock %}

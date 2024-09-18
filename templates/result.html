@@ -1,0 +1,20 @@
+{% extends "default.html" %}
+
+{% block content %}
+{% if papers | length == 0 %}
+No papers found.
+{% elif papers | length == 1 %}
+1 paper found with {{ field }} equals to {{ identifier }}.
+{% else %}
+{{ papers | length }} papers found
+with {{ field }} equals to {{ identifier }}.
+{% endif %}
+<ol class="papers">
+    {% for paper in papers %}
+    <li>
+        <pre><button onclick="copyEntry({{ loop.index }})">Copy</button><code>{{ paper.entry }}</code></pre>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock %}
+

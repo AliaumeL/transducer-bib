@@ -1,0 +1,42 @@
+{% extends "default.html" %}
+
+{% block content %}
+    <h1>Cite this PDF</h1>
+    <p>Do you want to cite a PDF document that you have on your computer?
+       Check it against all {{ total }} papers in our database.
+    </p>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept=".pdf">
+        </form>
+        <p id="checksum"> … </p>
+        <script>
+async function getChecksumSha256(blob) {
+  const uint8Array = new Uint8Array(await blob.arrayBuffer());
+  const hashBuffer = await crypto.subtle.digest('SHA-256', uint8Array);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+  return hashArray.map((h) => h.toString(16).padStart(2, '0')).join('');
+}
+
+const fileInput = document.getElementById('file');
+const dropZone = document.getElementById('drop_zone');
+const uploadForm = document.getElementById('upload-form');
+const checkSum  = document.getElementById('checksum');
+window.onload = () => {
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        getChecksumSha256(file).then((sum) => {
+            const a = document.createElement('a');
+            a.href = "/sha256/" + sum.toUpperCase() + ".html";
+            a.innerHTML = "Go to paper";
+            // delete previous children
+            while (checkSum.firstChild) {
+                checkSum.removeChild(checkSum.firstChild);
+            }
+            checkSum.appendChild(a);
+        });
+    });
+};
+
+        </script>
+{% endblock %}
