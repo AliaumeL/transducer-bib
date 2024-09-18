@@ -27,7 +27,7 @@ window.onload = () => {
         const file = event.target.files[0];
         getChecksumSha256(file).then((sum) => {
             const a = document.createElement('a');
-            a.href = "/sha256/" + sum.toUpperCase() + ".html";
+            a.href = "{{ root_url }}/sha256/" + sum.toUpperCase() + ".html";
             a.innerHTML = "Go to paper";
             // delete previous children
             while (checkSum.firstChild) {

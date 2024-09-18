@@ -1,6 +1,15 @@
 # transducer-bib
 
-Curated bibtex files for transducer related papers and books.
+This repository contains a collection of bibtex entries for papers and books
+that started as a collection of papers on transducers and automata theory. 
+It has since grown to include papers on well-quasi-orderings, model theory, and
+other topics that I find relevant to the study of transducers.
+
+The bibliography is explorable online at the [github pages][ghpages] of this
+repository.
+
+[ghpages]: https://aliaumel.github.io/transducer-bib
+
 
 ## Files
 

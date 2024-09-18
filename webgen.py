@@ -75,7 +75,7 @@ def infer_kind(entry):
 def entry_to_paper(entry) -> Paper:
     title = entry.get("title", "Unknown Title")
     year = int(entry.get("year", "0").strip())
-    authors = list(map(str.strip, entry.get("author", "").split(" and ")))
+    authors = list(map(str.strip, entry.get("author", "").replace("\n"," ").split(" and ")))
     sha256  = list(filter(lambda x: x, map(str.strip, entry.get("sha256", "").split(",")    )))
     doi     = list(filter(lambda x: x, map(str.strip, entry.get("doi",    "").split(",")    )))
     arxiv   = list(filter(lambda x: x, map(str.strip, entry.get("eprint", "").split(",")    )))
@@ -137,19 +137,19 @@ def render_hugelist(website: Website):
     grouped = [ (year, list(papers)) for (year, papers) in itertools.groupby(by_year, key=lambda x: x.year) ]
     total = len(website.papers)
     with open(website.output_dir / 'list.html', 'w') as f:
-        f.write(template.render(title="List", papers_by_year=grouped))
+        f.write(template.render(title="List", papers_by_year=grouped, root_url=".", total=total))
 
 def render_page(website: Website, name : str):
     template = website.templates.get_template(f'{name}.html')
     with open(website.output_dir / f'{name}.html', 'w') as f:
-        f.write(template.render(title=name))
+        f.write(template.render(title=name, root_url="."))
 
 def render_index(website: Website):
     template = website.templates.get_template('index.html')
     total = len(website.papers)
 
     with open(website.output_dir / 'index.html', 'w') as f:
-        f.write(template.render(title="Search", total=total))
+        f.write(template.render(title="Search", total=total, root_url="."))
 
 def render_list(website: Website, name : str):
     template = website.templates.get_template(f'result.html')
@@ -160,7 +160,12 @@ def render_list(website: Website, name : str):
         outpath.parent.mkdir(parents=True, exist_ok=True)
         with open(website.output_dir / name / f'{identifier}.html', 'w') as f:
             title = f"{name} — {identifier[:10]}"
-            f.write(template.render(title=title, field=name, identifier=identifier, papers=papers))
+            f.write(template.render(title=title, 
+                                    field=name, 
+                                    identifier=identifier,
+                                    papers=papers,
+                                    total=len(papers),
+                                    root_url="../.."))
 
 def read_bibtex(bibtex_file):
     with open(bibtex_file, 'r') as f:
