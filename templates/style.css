@@ -3,112 +3,114 @@
 /* source code font */
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,300,200,500,600,700,900);
 
-html, body, html * {
-  font-family: 'Roboto', sans-serif;
+html,
+body,
+html * {
+  font-family: "Roboto", sans-serif;
 }
 
-pre, code {
-  font-family: 'Source Code Pro', monospace;
+pre,
+code {
+  font-family: "Source Code Pro", monospace;
 }
 
 :root {
-    --ensps-prune: #63003c;
-    --ensps-A1:    #000000;
-    --ensps-B1:    #313e48;
-    --ensps-C1:    #7c878f;
-    --ensps-D1:    #d5dadf;
-    --ensps-A2:    #c60b46;
-    --ensps-B2:    #ed145b;
-    --ensps-C2:    #ee3423;
-    --ensps-D2:    #f37720;
-    --ensps-A3:    #7c2a90;
-    --ensps-B3:    #7d6aae;
-    --ensps-C3:    #c6671d;
-    --ensps-D3:    #febc18;
-    --ensps-A4:    #004e7d;
-    --ensps-B4:    #0e87c9;
-    --ensps-C4:    #0094b5;
-    --ensps-D4:    #46c3d2;
-    --ensps-A5:    #00807a;
-    --ensps-B5:    #40b769;
-    --ensps-C5:    #8cc63e;
-    --ensps-D5:    #d5df3d;
+  --ensps-prune: #63003c;
+  --ensps-A1: #000000;
+  --ensps-B1: #313e48;
+  --ensps-C1: #7c878f;
+  --ensps-D1: #d5dadf;
+  --ensps-A2: #c60b46;
+  --ensps-B2: #ed145b;
+  --ensps-C2: #ee3423;
+  --ensps-D2: #f37720;
+  --ensps-A3: #7c2a90;
+  --ensps-B3: #7d6aae;
+  --ensps-C3: #c6671d;
+  --ensps-D3: #febc18;
+  --ensps-A4: #004e7d;
+  --ensps-B4: #0e87c9;
+  --ensps-C4: #0094b5;
+  --ensps-D4: #46c3d2;
+  --ensps-A5: #00807a;
+  --ensps-B5: #40b769;
+  --ensps-C5: #8cc63e;
+  --ensps-D5: #d5df3d;
 
-    --heading: var(--ensps-A1);
-    --action : var(--ensps-A4);
-    --active : var(--ensps-A5);
-    --active-dark: var(--ensps-C5);
-    --action-dark: var(--ensps-D5);
+  --heading: var(--ensps-A1);
+  --action: var(--ensps-A4);
+  --active: var(--ensps-A5);
+  --active-dark: var(--ensps-C5);
+  --action-dark: var(--ensps-D5);
 }
 
 body {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0px 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0px 1rem;
 }
 
 header {
-    margin: 0px;
-    padding: 1rem;
-    background: var(--ensps-A1);
-    color: var(--ensps-D1);
-    border-radius: 0px 0px 10px 10px;
+  margin: 0px;
+  padding: 1rem;
+  border: 1px solid var(--ensps-A1);
+  border-radius: 0px 0px 10px 10px;
 }
 
 header h1 {
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 header a {
-    color: var(--action-dark);
+  color: var(--action);
 }
 
 header a:hover {
-    color: var(--active-dark);
+  color: var(--active);
 }
 
 header ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
 header ul li {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 header ul li a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 main h1::before {
-    /* nice > symbol unicode */
-    content: "〉";
+  /* nice > symbol unicode */
+  content: "〉";
 }
 form#upload-form {
-    margin: 0px;
-    padding: 1rem;
-    border-radius: 10px;
-    border: thin solid var(--ensps-D1);
-    transition: all 0.2s;
+  margin: 0px;
+  padding: 1rem;
+  border-radius: 10px;
+  border: thin solid var(--ensps-D1);
+  transition: all 0.2s;
 }
 form#upload-form input#file {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 10em;
-    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 10em;
+  text-align: center;
 }
 form#upload-form:hover {
-    border: thin solid var(--active);
-    box-shadow: 0px 0px 2px var(--active);
+  border: thin solid var(--active);
+  box-shadow: 0px 0px 2px var(--active);
 }
 form#upload-form input::file-selector-button {
   display: block;
@@ -119,120 +121,120 @@ form#upload-form input::file-selector-button {
 }
 
 main pre {
-    display: block;
-    position: relative;
-    padding: 1rem;
-    border-radius: 10px;
-    border: thin solid var(--ensps-D1);
+  display: block;
+  position: relative;
+  padding: 1rem;
+  border-radius: 10px;
+  border: thin solid var(--ensps-D1);
 }
 
 /*
  * set copy button top right of the pre block
  */
 main pre button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    padding: 0.5rem;
-    background: var(--ensps-D1);
-    border-top: none;
-    border-right: none;
-    border-bottom: thin solid var(--ensps-C1);
-    border-left: thin solid var(--ensps-C1);
-    border-radius: 0px 10px 0px 0px;
-    color: var(--action);
-    transition: all 0.2s;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 0.5rem;
+  background: var(--ensps-D1);
+  border-top: none;
+  border-right: none;
+  border-bottom: thin solid var(--ensps-C1);
+  border-left: thin solid var(--ensps-C1);
+  border-radius: 0px 10px 0px 0px;
+  color: var(--action);
+  transition: all 0.2s;
 }
 
 main pre button:active {
-    color: var(--active);
+  color: var(--active);
 }
 
 main pre code {
-    overflow-x: scroll;
-    display: block;
+  overflow-x: scroll;
+  display: block;
 }
 
 #checksum {
-    text-align: center;
-    padding: 1rem;
+  text-align: center;
+  padding: 1rem;
 }
 #checksum a {
-    text-align: center;
-    border: thin solid var(--ensps-D1);
-    text-decoration: none;
-    border-radius: 10px;
-    padding: 1rem;
+  text-align: center;
+  border: thin solid var(--ensps-D1);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 1rem;
 }
 #checksum a:hover {
-    border: thin solid var(--action);
+  border: thin solid var(--action);
 }
 
 ol.papers li {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0.5rem;
 }
 
 ol.papers li[data-kind="journal"]::before {
-    content: "📄";
+  content: "📄";
 }
 
 ol.papers li[data-kind="code"]::before {
-    content: "💻";
+  content: "💻";
 }
 
 ol.papers li[data-kind="preprint"]::before {
-    content: "📦";
+  content: "📦";
 }
 
 ol.papers li[data-kind="conference"]::before {
-    content: "🎤";
+  content: "🎤";
 }
 
 ol.papers li[data-kind="thesis"]::before {
-    content: "🎓";
+  content: "🎓";
 }
 
 ol.papers li[data-kind="book"]::before {
-    content: "📚";
+  content: "📚";
 }
 
 ol.papers li[data-kind="other"]::before {
-    content: "🔗";
+  content: "🔗";
 }
 
 li span.title {
-    font-weight: bold;
-    color: var(--heading);
+  font-weight: bold;
+  color: var(--heading);
 }
 
 li span.authors {
-    color: var(--ensps-C1);
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
+  color: var(--ensps-C1);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 li span.authors span.author {
-    color: var(--ensps-C1);
-    padding: 0.5rem;
+  color: var(--ensps-C1);
+  padding: 0.5rem;
 }
 li span.links {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 li span.links a {
-    color: var(--action);
-    text-decoration: none;
-    padding: 0.5rem;
+  color: var(--action);
+  text-decoration: none;
+  padding: 0.5rem;
 }
 
 footer {
-    border-top: thin solid var(--ensps-D1);
-    margin: 0px;
-    text-align: center;
+  border-top: thin solid var(--ensps-D1);
+  margin: 0px;
+  text-align: center;
 }
