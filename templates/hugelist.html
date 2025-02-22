@@ -14,10 +14,13 @@
             </span>
             <span class="links">
             {% for doi in paper.doi %}
-            <a href="{{ root_url }}/doi/{{ doi }}.html">doi:{{ doi }}</a>
+            <a href="https://dx.doi.org/{{ doi }}">doi:{{ doi }}</a>
             {% endfor %}
             {% for arxiv in paper.arxiv %}
-            <a href="{{ root_url }}/arxiv/{{ arxiv }}.html">arxiv:{{ arxiv }}</a>
+            <a href="https://arxiv.org/abs/{{ arxiv }}">arxiv:{{ arxiv }}</a>
+            {% endfor %}
+            {% for url in paper.url %}
+            <a href="{{ url }}">{{ url }}</a>
             {% endfor %}
             {% for sha256 in paper.sha256 %}
             <a href="{{ root_url }}/sha256/{{ sha256 }}.html">sha256:{{ sha256[:10] }}</a>

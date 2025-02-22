@@ -11,7 +11,7 @@ with {{ field }} equals to {{ identifier }}.
 {% endif %}
 <ol class="papers">
     {% for paper in papers %}
-    <li>
+    <li><p>{{ paper.title }}</p>
         <pre><button onclick="copyEntry({{ loop.index }})">Copy</button><code>{{ paper.entry }}</code></pre>
     </li>
     {% endfor %}
