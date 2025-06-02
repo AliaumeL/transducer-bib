@@ -16,9 +16,11 @@ jobs:
         with:
           latest: true
           extract: true
+          fileName: "*linux*"
           repository: "AliaumeL/bibadac"
       - name: Allow execution
         run: |
+          ls -lah
           chmod +x bibadac
       - name: Run bibadac
         run: |
