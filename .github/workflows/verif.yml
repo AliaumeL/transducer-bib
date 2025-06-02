@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: |
-         python3 webgen.py --root-url="https://aliaumel.github.io/transducer-bib/" --template=templates --output=site *.bib
       - name: Fetch bibadac
         run: |
           curl "https://github.com/AliaumeL/bibadac/releases/download/v.0.0.1/bibadac-x86_64-unknown-linux-gnu.tar.gz" -o bibadac.tar.gz
