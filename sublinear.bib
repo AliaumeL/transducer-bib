@@ -2,6 +2,23 @@ Sublinear Transductions
 That is functions from Σ* to Γ* such that the growth rate is at most linear
 in the size of the input.
 
+
+@inbook{BLR26,
+  author        = {Benalioua, Yahia Idriss and Lhote, Nathan and Reynier, Pierre-Alain},
+  booktitle     = {Developments in Language
+                   Theory},
+  doi           = {10.1007/978-3-032-28404-4_12},
+  isbn          = {9783032284044},
+  issn          = {1611-3349},
+  pages         = {153–167},
+  publisher     = {Springer
+                   Nature Switzerland},
+  title         = {Minimizing Streaming String Transducers: An
+                   Algebraic Approach},
+  url           = {http://dx.doi.org/10.1007/978-3-032-28404-4_12},
+  year          = {2026},
+}
+
 @inproceedings{DGK21,
   author        = {Dartois, Luc and Gastin, Paul and Krishna, Shankara Narayanan},
   booktitle     = {2021 36th Annual ACM/IEEE Symposium on Logic in Computer Science (LICS)},
@@ -191,22 +208,20 @@ in the size of the input.
 
 @inproceedings{ALUR11,
   abstract      = {Streaming string transducers define (partial) functions from input strings to output strings. A streaming string transducer makes a single pass through the input string and uses a finite set of variables that range over strings from the output alphabet. At every step, the transducer processes an input symbol, and updates all the variables in parallel using assignments whose right-hand-sides are concatenations of output symbols and variables with the restriction that a variable can be used at most once in a right-hand-side expression. The expressiveness of streaming string transducers coincides with the class of ``regular'' transductions that can be equivalently defined using two-way deterministic finite-state transducers and using monadic second-order logic. The problems of checking functional equivalence of two streaming transducers, and of checking whether a streaming transducer satisfies pre/post verification conditions specified by finite automata, are solvable in Pspace. These decision procedures also generalize to the model of streaming transducers over data strings---strings over symbols tagged with data values over a potentially infinite data domain that supports only the operations of equality and ordering. We identify a class of imperative and a class of functional programs, manipulating lists of data items, which can be effectively translated to such streaming data-string transducers. Our results lead to algorithms for assertion checking and for checking functional equivalence of two programs, written possibly in different programming styles, for commonly used routines such as insert, delete, and reverse.},
-  author       = {Rajeev Alur},
-  editor       = {Lev D. Beklemishev and
-                  Ruy J. G. B. de Queiroz},
-  title        = {Streaming String Transducers},
-  booktitle    = {Logic, Language, Information and Computation - 18th International
-                  Workshop, WoLLIC 2011, Philadelphia, PA, USA, May 18-20, 2011. Proceedings},
-  series       = {Lecture Notes in Computer Science},
-  volume       = {6642},
-  pages        = {1},
-  publisher    = {Springer},
-  year         = {2011},
-  url          = {https://doi.org/10.1007/978-3-642-20920-8\_1},
-  doi          = {10.1007/978-3-642-20920-8\_1},
+  author        = {Alur, Rajeev},
+  booktitle     = {Logic, Language, Information and Computation - 18th International
+                   Workshop, WoLLIC 2011, Philadelphia, PA, USA, May 18-20, 2011. Proceedings},
+  doi           = {10.1007/978-3-642-20920-8\_1},
+  editor        = {Lev D. Beklemishev and
+                   Ruy J. G. B. de Queiroz},
+  pages         = {1},
+  publisher     = {Springer},
+  series        = {Lecture Notes in Computer Science},
+  title         = {Streaming String Transducers},
+  url           = {https://doi.org/10.1007/978-3-642-20920-8\_1},
+  volume        = {6642},
+  year          = {2011},
 }
-
-
 
 @article{CHOF03,
   author        = {Choffrut, Christian},
